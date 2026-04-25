@@ -278,8 +278,24 @@ input,textarea,select{font-family:'Source Serif 4',serif}
 <!-- ADMIN -->
 <div id="pg-admin">
   <div class="adhdr"><div class="adlogo">Master SAT <em>Admin Panel</em></div><div class="adbtns"><button class="agbtn" onclick="G('pg-student');renderS('home')">View Portal</button><button class="agbtn" onclick="G('pg-login')">Log Out</button></div></div>
-  <div class="adnav" id="adnav"></div>
-  <div class="adcont" id="adcont"></div>
+  <div class="adnav" id="adnav">
+    <button class="sdbtn on" onclick="aTab('rec',this)">Recordings</button>
+    <button class="sdbtn" onclick="aTab('mat',this)">Materials</button>
+    <button class="sdbtn" onclick="aTab('hw',this)">Homework</button>
+    <button class="sdbtn" onclick="aTab('ann',this)">Announcements</button>
+    <button class="sdbtn" onclick="aTab('stu',this)">Students</button>
+    <button class="sdbtn" onclick="aTab('sub',this)">Submissions</button>
+    <button class="sdbtn" onclick="aTab('set',this)">Settings</button>
+  </div>
+  <div class="adcont">
+    <div id="tab-rec" class="atab"></div>
+    <div id="tab-mat" class="atab" style="display:none"></div>
+    <div id="tab-hw" class="atab" style="display:none"></div>
+    <div id="tab-ann" class="atab" style="display:none"></div>
+    <div id="tab-stu" class="atab" style="display:none"></div>
+    <div id="tab-sub" class="atab" style="display:none"></div>
+    <div id="tab-set" class="atab" style="display:none"></div>
+  </div>
 </div>
 
 <script>
@@ -426,29 +442,25 @@ function backHW(){G('pg-student');renderS('hw');var btns=document.querySelectorA
 // ADMIN
 function aLogin(){
   var pw=document.getElementById('apw').value;
-  if(pw===getAP()){
-    loadD();
-    G('pg-admin');
-    renderAdminNav();
-    setTimeout(function(){renderA('rec')},50);
-  }
+  if(pw===getAP()){loadD();G('pg-admin');renderA('rec')}
   else{document.getElementById('aerr').textContent='Incorrect password.'}
 }
 
-function renderAdminNav(){
-  var tabs=[{id:'rec',label:'Recordings'},{id:'mat',label:'Materials'},{id:'hw',label:'Homework'},{id:'ann',label:'Announcements'},{id:'stu',label:'Students'},{id:'sub',label:'Submissions'},{id:'set',label:'Settings'}];
-  document.getElementById('adnav').innerHTML=tabs.map(function(t){return'<button class="sdbtn'+(t.id===curATab?' on':'')+'" onclick="aTab(\''+t.id+'\',this)">'+t.label+'</button>'}).join('');
-}
+
 
 function aTab(id,btn){
   curATab=id;
   document.querySelectorAll('.sdbtn').forEach(function(b){b.classList.remove('on')});
   btn.classList.add('on');
-  renderA(id);
+  // hide all tabs
+  document.querySelectorAll('.atab').forEach(function(t){t.style.display='none'});
+  // show selected tab
+  document.getElementById('tab-'+id).style.display='block';
+  // render content into it
+  document.getElementById('tab-'+id).innerHTML=buildTab(id);
 }
 
-function renderA(tab){
-  curATab=tab;
+function buildTab(tab){
   var h='';
   if(tab==='rec'){
     var list=D.recs.length?D.recs.map(function(r,i){return'<div class="aitem"><span class="abg bv">VIDEO</span><div class="ainf"><div class="ain">'+H(r.title)+'</div><div class="ais">'+H(r.label||'')+' · '+H(r.date||'No date')+'</div></div><div class="tglw"><span class="tgll">'+(r.unlocked?'Unlocked':'Locked')+'</span><label class="tgl"><input type="checkbox" '+(r.unlocked?'checked':'')+' onchange="tglR('+i+',this.checked)"><span class="tsl"></span></label></div><button class="delbtn" onclick="delR('+i+')">Remove</button></div>'}).join(''):'<div class="noitem">No recordings yet.</div>';
@@ -471,7 +483,13 @@ function renderA(tab){
   } else if(tab==='set'){
     h='<div class="attl">Settings</div><div class="setc"><div class="sett">Change Admin Password</div><div class="fgrid"><div class="fg"><label class="flb">New Password</label><input class="fin" type="password" id="pwnew" placeholder="New password"></div><div class="fg"><label class="flb">Confirm</label><input class="fin" type="password" id="pwcon" placeholder="Confirm"></div></div><div style="display:flex;align-items:center;margin-top:0.5rem"><button class="sbtn" onclick="chgPw()">Update Password</button><span class="ok" id="pwok">Updated!</span><span style="font-size:0.75rem;color:var(--red);margin-left:0.7rem" id="pwerr"></span></div></div>';
   }
-  document.getElementById('adcont').innerHTML=h;
+  return h;
+}
+function renderA(tab){
+  curATab=tab;
+  document.querySelectorAll('.atab').forEach(function(t){t.style.display='none'});
+  document.getElementById('tab-'+tab).style.display='block';
+  document.getElementById('tab-'+tab).innerHTML=buildTab(tab);
 }
 
 function flash(id){var e=document.getElementById(id);if(e){e.style.display='inline';setTimeout(function(){if(document.getElementById(id))document.getElementById(id).style.display='none'},2500)}}
