@@ -407,7 +407,7 @@ function aLogin(){
   if(pw===getAP()){
     load();
     show('pg-admin');
-    aTab('rec',document.getElementById('btn-rec'));
+    document.getElementById('adcont').innerHTML=buildA('rec');
   } else {
     document.getElementById('aerr').textContent='Incorrect password.';
   }
