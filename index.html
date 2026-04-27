@@ -7,38 +7,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --navy:#0d2d5e;--blue:#1a56a0;--green:#3aaa7a;--gl:#b6e8d4;
-  --pale:#daeef9;--mint:#e8f7f2;--mid:#2a7fd4;
-  --surf:#f4f9fd;--white:#fff;--bdr:#c5dff2;--muted:#6b8cae;--red:#e05a4e
-}
+:root{--navy:#0d2d5e;--blue:#1a56a0;--green:#3aaa7a;--gl:#b6e8d4;--pale:#daeef9;--mint:#e8f7f2;--mid:#2a7fd4;--surf:#f4f9fd;--white:#fff;--bdr:#c5dff2;--muted:#6b8cae;--red:#e05a4e}
 body{font-family:'Source Serif 4',serif;background:var(--surf);min-height:100vh}
 button,input,textarea,select{font-family:'Source Serif 4',serif}
 button{cursor:pointer}
 
-/* ── SCREENS ── */
-.screen{display:none}
+/* PAGES - simple block/none */
+.pg{display:none}
+.pg.show{display:block}
+#pg-login.show,#pg-alog.show{display:flex;min-height:100vh;align-items:center;justify-content:center;padding:2rem}
 
-/* ── LOGIN ── */
-#s-login{
-  min-height:100vh;background:var(--navy);
-  display:flex;align-items:center;justify-content:center;padding:2rem
-}
+/* LOGIN */
+#pg-login{background:var(--navy)}
 .lb h1{font-size:1.75rem;font-weight:700;color:#fff;text-align:center;margin-bottom:6px}
 .lb p{font-size:1rem;color:#b5d4f4;font-style:italic;font-weight:600;text-align:center;margin-bottom:4px}
-.lb span{display:block;font-size:0.68rem;color:var(--gl);letter-spacing:0.15em;text-transform:uppercase;font-family:sans-serif;text-align:center;margin-bottom:2rem}
-.lbox{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:2rem;width:380px}
+.lb small{display:block;font-size:0.68rem;color:var(--gl);letter-spacing:0.15em;text-transform:uppercase;font-family:sans-serif;text-align:center;margin-bottom:2rem}
+.lbox{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:2rem;width:100%;max-width:380px}
 .lbox h2{font-size:1rem;font-weight:700;color:#fff;text-align:center;margin-bottom:1.5rem}
 .ll{display:block;font-size:0.68rem;color:rgba(255,255,255,0.55);letter-spacing:0.1em;text-transform:uppercase;font-family:sans-serif;font-weight:700;margin-bottom:5px}
 .li{width:100%;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.18);color:#fff;font-size:0.95rem;padding:11px 13px;border-radius:7px;outline:none;margin-bottom:1rem}
 .li::placeholder{color:rgba(255,255,255,0.3)}
-.li:focus{border-color:var(--green)}
 .gbtn{width:100%;background:var(--green);color:#fff;border:none;font-size:1rem;font-weight:700;padding:12px;border-radius:7px}
 .err{font-size:0.78rem;color:#ff8a80;text-align:center;margin-top:0.75rem;min-height:1.1rem;font-family:sans-serif}
-.secret{height:28px}
+.hz{height:28px}
 
-/* ── STUDENT PORTAL ── */
-#s-portal{display:none}
+/* HEADER */
 .hdr{background:var(--navy);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid var(--green)}
 .hdr h1{font-size:2.2rem;font-weight:700;color:#fff;margin-bottom:6px}
 .hdr h2{font-size:1.3rem;color:#d4e8f9;font-style:italic;font-weight:600;margin-bottom:5px}
@@ -48,10 +41,15 @@ button{cursor:pointer}
 .wt{font-size:0.82rem;color:#b5d4f4;font-family:sans-serif}
 .wt b{color:#fff}
 .obtn{background:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.65);font-size:0.7rem;font-family:sans-serif;padding:5px 12px;border-radius:5px}
+
+/* STUDENT NAV */
 .snav{background:var(--blue);display:flex;padding:0 2.5rem;border-bottom:1px solid rgba(255,255,255,0.12);overflow-x:auto}
-.snav button{background:none;border:none;color:rgba(255,255,255,0.65);font-size:0.95rem;font-weight:700;padding:1rem 1.3rem;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
-.snav button.on{color:#fff;border-bottom-color:var(--green)}
+.snav a{display:block;color:rgba(255,255,255,0.65);font-size:0.95rem;font-weight:700;padding:1rem 1.3rem;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;text-decoration:none}
+.snav a:hover{color:#fff}
 .smain{padding:2rem 2.5rem;max-width:980px}
+
+/* STUDENT SECTIONS - all visible, anchor-linked */
+.ssec{margin-bottom:3rem;scroll-margin-top:20px}
 .sr{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.1rem}
 .sttl{font-size:1.2rem;font-weight:700;color:var(--navy)}
 .sct{font-size:0.7rem;color:var(--muted);font-family:sans-serif;font-weight:700}
@@ -61,7 +59,7 @@ button{cursor:pointer}
 .ic{background:var(--white);border:1px solid var(--bdr);border-left:5px solid var(--green);border-radius:16px;padding:2rem 2.25rem;margin-bottom:1.75rem}
 .it{display:flex;gap:1.5rem;margin-bottom:1.5rem}
 .av{width:64px;height:64px;border-radius:50%;background:var(--navy);color:#fff;font-size:1.3rem;font-weight:700;font-style:italic;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.in{font-size:1.55rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.in2{font-size:1.55rem;font-weight:700;color:var(--navy);margin-bottom:4px}
 .ir{font-size:0.85rem;color:var(--green);font-weight:700;letter-spacing:0.07em;text-transform:uppercase;font-family:sans-serif;margin-bottom:3px}
 .id{font-size:0.82rem;color:var(--muted);font-family:sans-serif;font-weight:600}
 .idv{border:none;border-top:1px solid var(--bdr);margin-bottom:1.5rem}
@@ -71,15 +69,11 @@ button{cursor:pointer}
 .si{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .si svg{width:23px;height:23px}
 .sn{font-size:1.7rem;font-weight:700;color:var(--navy);line-height:1;margin-bottom:3px}
-.sl{font-size:0.75rem;color:var(--muted);font-family:sans-serif;font-weight:600;line-height:1.35}
-
-/* announcements */
+.sl2{font-size:0.75rem;color:var(--muted);font-family:sans-serif;font-weight:600;line-height:1.35}
 .ann{background:var(--white);border:1px solid var(--bdr);border-left:4px solid var(--mid);border-radius:10px;padding:1rem 1.2rem;margin-bottom:0.6rem}
 .at{font-size:0.95rem;font-weight:700;color:var(--navy);margin-bottom:4px}
 .ab{font-size:0.9rem;color:#2a4a7f;line-height:1.65;font-weight:600}
 .ad{font-size:0.65rem;color:var(--muted);margin-top:6px;font-family:sans-serif;font-weight:700}
-
-/* recordings */
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
 .vc{background:var(--white);border:1px solid var(--bdr);border-radius:10px;overflow:hidden}
 .vc.open{cursor:pointer}
@@ -94,34 +88,29 @@ button{cursor:pointer}
 .vlb{font-size:0.62rem;color:var(--green);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:3px;font-family:sans-serif}
 .vti{font-size:0.92rem;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:3px}
 .vmt{font-size:0.68rem;color:var(--muted);font-family:sans-serif;font-weight:600}
-
-/* materials */
 .dlist{display:flex;flex-direction:column;gap:0.55rem}
 .dr{background:var(--white);border:1px solid var(--bdr);border-radius:8px;display:flex;align-items:center;gap:0.9rem;padding:0.85rem 1rem}
 .di{width:36px;height:36px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;font-family:sans-serif;background:#daeef9;color:#0d2d5e}
 .dn{font-size:0.92rem;font-weight:700;color:var(--navy)}
 .ds{font-size:0.7rem;color:var(--muted);margin-top:2px;font-family:sans-serif;font-weight:600}
 .dbtn{background:var(--pale);border:1px solid var(--bdr);color:var(--blue);font-size:0.7rem;font-weight:700;padding:6px 14px;border-radius:5px;font-family:sans-serif}
-
-/* homework */
 .hwc{background:var(--white);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.6rem}
 .hwn{width:36px;height:36px;border-radius:50%;background:var(--pale);color:var(--blue);font-size:0.85rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:sans-serif}
 .hwt{font-size:0.92rem;font-weight:700;color:var(--navy)}
 .hws{font-size:0.68rem;color:var(--muted);margin-top:2px;font-family:sans-serif;font-weight:600}
 .mc{font-size:0.6rem;padding:3px 9px;border-radius:10px;font-weight:700;background:var(--mint);color:#1a6b50;border:1px solid var(--gl);font-family:sans-serif}
-.dt{font-size:0.68rem;color:var(--green);font-family:sans-serif;font-weight:700}
+.donet{font-size:0.68rem;color:var(--green);font-family:sans-serif;font-weight:700}
 .stbtn{background:var(--green);color:#fff;border:none;font-size:0.72rem;font-weight:700;padding:7px 16px;border-radius:5px;font-family:sans-serif}
 .rvbtn{background:var(--pale);border:1px solid var(--bdr);color:var(--blue);font-size:0.72rem;font-weight:700;padding:7px 16px;border-radius:5px;font-family:sans-serif}
 
-/* quiz */
-#s-quiz{display:none}
+/* QUIZ */
 .qmain{padding:2rem 2.5rem;max-width:700px}
 .qbk{background:none;border:1px solid var(--bdr);color:var(--blue);font-size:0.78rem;font-weight:700;font-family:sans-serif;padding:7px 14px;border-radius:6px;margin-bottom:1.5rem}
 .qtit{font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:4px}
 .qmet{font-size:0.72rem;color:var(--muted);font-family:sans-serif;font-weight:600;margin-bottom:1.5rem}
 .qcard{background:var(--white);border:1px solid var(--bdr);border-radius:12px;padding:1.4rem;margin-bottom:1rem}
-.qn{font-size:0.67rem;color:var(--green);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;font-family:sans-serif;margin-bottom:7px}
-.qt{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.55;margin-bottom:0.9rem}
+.qnum{font-size:0.67rem;color:var(--green);font-weight:700;letter-spacing:0.1em;text-transform:uppercase;font-family:sans-serif;margin-bottom:7px}
+.qtxt{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.55;margin-bottom:0.9rem}
 .qopts{display:flex;flex-direction:column;gap:0.45rem}
 .qo{display:flex;align-items:center;gap:0.7rem;background:var(--surf);border:1.5px solid var(--bdr);border-radius:8px;padding:0.7rem 0.9rem;cursor:pointer}
 .qo.sel{border-color:var(--blue);background:var(--pale)}
@@ -135,7 +124,7 @@ button{cursor:pointer}
 .qsr{display:flex;justify-content:flex-end;margin-top:1.5rem}
 .qsb{background:var(--navy);color:#fff;border:none;font-size:0.88rem;font-weight:700;font-family:sans-serif;padding:11px 28px;border-radius:8px}
 
-/* video modal */
+/* VIDEO MODAL */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:500;align-items:center;justify-content:center}
 .modal.open{display:flex}
 .mbox{background:#08172e;border:1px solid #1e3a6e;border-radius:10px;width:min(730px,96vw);overflow:hidden}
@@ -148,31 +137,29 @@ button{cursor:pointer}
 .mft{padding:0.65rem 1.2rem;border-top:1px solid #1e3a6e;font-size:0.68rem;color:var(--muted);display:flex;align-items:center;gap:7px;font-family:sans-serif;font-weight:700}
 .rd{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
 
-/* ── ADMIN LOGIN ── */
-#s-alog{
-  min-height:100vh;background:var(--surf);
-  display:none;align-items:center;justify-content:center;padding:2rem
-}
-.albox{background:var(--white);border:1px solid var(--bdr);border-radius:14px;width:370px;padding:2.5rem}
+/* ADMIN LOGIN */
+#pg-alog{background:var(--surf)}
+.albox{background:var(--white);border:1px solid var(--bdr);border-radius:14px;width:100%;max-width:370px;padding:2.5rem}
 .albox h2{font-size:1.25rem;font-weight:700;color:var(--navy);text-align:center;margin-bottom:4px}
 .albox p{font-size:0.7rem;color:var(--muted);text-align:center;letter-spacing:0.1em;text-transform:uppercase;font-family:sans-serif;font-weight:700;margin-bottom:2rem}
 .all{display:block;font-size:0.68rem;color:var(--muted);letter-spacing:0.09em;text-transform:uppercase;font-family:sans-serif;font-weight:700;margin-bottom:5px}
 .ali{width:100%;background:var(--surf);border:1.5px solid var(--bdr);color:var(--navy);font-size:0.92rem;padding:10px 12px;border-radius:7px;outline:none;margin-bottom:1rem}
 .albtn{width:100%;background:var(--navy);color:#fff;border:none;font-size:0.95rem;font-weight:700;padding:11px;border-radius:7px}
-.alerr{font-size:0.75rem;color:var(--red);text-align:center;margin-top:0.75rem;min-height:1rem;font-family:sans-serif}
+.aerr{font-size:0.75rem;color:var(--red);text-align:center;margin-top:0.75rem;min-height:1rem;font-family:sans-serif}
 .albk{display:block;text-align:center;margin-top:1.2rem;font-size:0.72rem;color:var(--muted);text-decoration:none;font-family:sans-serif;font-weight:600}
 
-/* ── ADMIN PANEL ── */
-#s-admin{display:none}
+/* ADMIN */
 .adhd{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid var(--green)}
 .adlo{font-size:1.1rem;font-weight:700;color:#fff}
 .adlo em{font-size:0.65rem;font-style:normal;color:var(--gl);letter-spacing:0.12em;margin-left:8px;font-family:sans-serif;font-weight:700;text-transform:uppercase}
 .adbt{display:flex;gap:0.6rem}
 .agb{background:none;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.65);font-size:0.72rem;font-family:sans-serif;font-weight:700;padding:6px 14px;border-radius:5px}
-.adnv{background:var(--white);border-bottom:1px solid var(--bdr);padding:0.6rem 1.5rem;display:flex;flex-wrap:wrap;gap:0.4rem}
-.tb{background:none;border:1px solid var(--bdr);color:var(--muted);font-size:0.78rem;font-weight:700;font-family:sans-serif;padding:6px 14px;border-radius:6px;white-space:nowrap}
-.tb.on{color:var(--blue);border-color:var(--blue);background:var(--pale)}
-.adco{padding:1.75rem;background:var(--surf);min-height:70vh}
+/* ADMIN TABS - using anchor navigation, always visible */
+.adnav{background:var(--white);border-bottom:1px solid var(--bdr);padding:0.6rem 1.5rem;display:flex;flex-wrap:wrap;gap:0.4rem;position:sticky;top:0;z-index:10}
+.adnav a{background:none;border:1px solid var(--bdr);color:var(--muted);font-size:0.78rem;font-weight:700;font-family:sans-serif;padding:6px 14px;border-radius:6px;white-space:nowrap;text-decoration:none}
+.adnav a:hover{color:var(--blue);border-color:var(--blue)}
+.adco{padding:1.75rem;background:var(--surf)}
+.adsec{margin-bottom:3rem;scroll-margin-top:60px}
 .attl{font-size:1.25rem;font-weight:700;color:var(--navy);margin-bottom:1.4rem;padding-bottom:0.7rem;border-bottom:1px solid var(--bdr)}
 .fc{background:var(--white);border:1px solid var(--bdr);border-radius:10px;padding:1.4rem;margin-bottom:1.4rem}
 .fct{font-size:0.68rem;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;font-family:sans-serif;font-weight:700;margin-bottom:1.1rem}
@@ -212,7 +199,7 @@ button{cursor:pointer}
 .rb{background:none;border:1px solid var(--bdr);color:var(--blue)}
 .ab2{background:none;border:1px solid var(--gl);color:var(--green)}
 .dab{background:none;border:1px solid var(--bdr);color:var(--muted)}
-.sub{background:var(--white);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.15rem;margin-bottom:0.6rem}
+.subc{background:var(--white);border:1px solid var(--bdr);border-radius:10px;padding:1rem 1.15rem;margin-bottom:0.6rem}
 .sbh{display:flex;align-items:center;justify-content:space-between}
 .sbs{font-size:0.92rem;font-weight:700;color:var(--navy)}
 .sbw{font-size:0.68rem;color:var(--muted);font-family:sans-serif;font-weight:600;margin-top:2px}
@@ -226,12 +213,12 @@ button{cursor:pointer}
 <body>
 
 <!-- STUDENT LOGIN -->
-<div id="s-login" class="screen">
+<div id="pg-login" class="pg show">
   <div>
     <div class="lb">
       <h1>Master SAT: English Section</h1>
       <p>Ms. Rasha Ahmed</p>
-      <span>Student Portal</span>
+      <small>Student Portal</small>
     </div>
     <div class="lbox">
       <h2>Sign in to your account</h2>
@@ -242,12 +229,12 @@ button{cursor:pointer}
       <button class="gbtn" onclick="sLogin()">Sign In</button>
       <div class="err" id="serr"></div>
     </div>
-    <div class="secret" onclick="openAdminLogin()"></div>
+    <div class="hz" onclick="openAdmin()"></div>
   </div>
 </div>
 
 <!-- STUDENT PORTAL -->
-<div id="s-portal">
+<div id="pg-portal" class="pg">
   <div class="hdr">
     <div>
       <h1>Master SAT: English Section</h1>
@@ -261,23 +248,66 @@ button{cursor:pointer}
     </div>
   </div>
   <nav class="snav">
-    <button onclick="sTab('home',this)">Home</button>
-    <button onclick="sTab('rec',this)">Session Recordings</button>
-    <button onclick="sTab('mat',this)">Session Materials</button>
-    <button onclick="sTab('hw',this)">Homework</button>
-    <button onclick="sTab('ann',this)">Announcements</button>
+    <a href="#sec-home">Home</a>
+    <a href="#sec-rec">Session Recordings</a>
+    <a href="#sec-mat">Session Materials</a>
+    <a href="#sec-hw">Homework</a>
+    <a href="#sec-ann">Announcements</a>
   </nav>
-  <div class="smain" id="smain"></div>
+  <div class="smain">
+    <div id="sec-home" class="ssec">
+      <div class="ic">
+        <div class="it">
+          <div class="av">RA</div>
+          <div>
+            <div class="in2">Ms. Rasha Ahmed</div>
+            <div class="ir">English Supervisor · SAT Instructor</div>
+            <div class="id">Masters Degree in Applied Linguistics and TESOL</div>
+          </div>
+        </div>
+        <hr class="idv">
+        <div class="iq">"Welcome to Master SAT: English Section. My goal is to make every session clear, focused, and effective — equipping you with the strategies and confidence you need to excel in the SAT English section. I'm glad you're here, and I look forward to guiding you every step of the way."</div>
+        <div class="stats">
+          <div class="stat">
+            <div class="si" style="background:#d0e8f7"><svg viewBox="0 0 24 24" fill="none" stroke="#1a56a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+            <div><div class="sn">14+</div><div class="sl2">Years of teaching experience</div></div>
+          </div>
+          <div class="stat" style="background:var(--mint)">
+            <div class="si" style="background:#b6e8d4"><svg viewBox="0 0 24 24" fill="none" stroke="#3aaa7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
+            <div><div class="sn" style="color:#1a6b50">SAT</div><div class="sl2">English Section specialist</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sr"><div class="sttl">Latest Announcements</div></div>
+      <div id="home-anns"></div>
+    </div>
+    <div id="sec-rec" class="ssec">
+      <div class="sr"><div class="sttl">Session Recordings</div><span class="sct" id="rec-ct"></span></div>
+      <div class="vgrid" id="rec-list"></div>
+    </div>
+    <div id="sec-mat" class="ssec">
+      <div class="sr"><div class="sttl">Session Materials</div><span class="sct" id="mat-ct"></span></div>
+      <div class="dlist" id="mat-list"></div>
+    </div>
+    <div id="sec-hw" class="ssec">
+      <div class="sr"><div class="sttl">Homework</div><span class="sct" id="hw-ct"></span></div>
+      <div id="hw-list"></div>
+    </div>
+    <div id="sec-ann" class="ssec">
+      <div class="sr"><div class="sttl">Announcements</div></div>
+      <div id="ann-list"></div>
+    </div>
+  </div>
 </div>
 
 <!-- QUIZ -->
-<div id="s-quiz">
+<div id="pg-quiz" class="pg">
   <div class="hdr">
     <div><h1>Master SAT: English Section</h1><h2>Ms. Rasha Ahmed</h2><div class="sub">Student Portal</div></div>
     <div class="hdr-r"><div class="badge">SAT Prep</div><div class="wt">Welcome, <b id="qwname"></b></div><button class="obtn" onclick="sLogout()">Log Out</button></div>
   </div>
   <div class="qmain">
-    <button class="qbk" onclick="backHW()">← Back</button>
+    <button class="qbk" onclick="backHW()">← Back to Homework</button>
     <div id="qtit" class="qtit"></div>
     <div id="qmet" class="qmet"></div>
     <div id="qres"></div>
@@ -296,144 +326,266 @@ button{cursor:pointer}
 </div>
 
 <!-- ADMIN LOGIN -->
-<div id="s-alog">
+<div id="pg-alog" class="pg">
   <div class="albox">
     <h2>Admin Portal</h2>
     <p>Master SAT · Ms. Rasha Ahmed</p>
     <label class="all">Admin Password</label>
     <input class="ali" type="password" id="apw" placeholder="Enter password" onkeydown="if(event.key==='Enter')aLogin()">
     <button class="albtn" onclick="aLogin()">Sign In</button>
-    <div class="alerr" id="aerr"></div>
-    <a class="albk" href="#" onclick="go('s-login');return false;">← Back to student login</a>
+    <div class="aerr" id="aerr"></div>
+    <a class="albk" href="#" onclick="showPg('pg-login');return false;">← Back to student login</a>
   </div>
 </div>
 
 <!-- ADMIN PANEL -->
-<div id="s-admin">
+<div id="pg-admin" class="pg">
   <div class="adhd">
     <div class="adlo">Master SAT <em>Admin Panel</em></div>
     <div class="adbt">
-      <button class="agb" onclick="go('s-portal');renderS('home')">View Portal</button>
-      <button class="agb" onclick="go('s-login')">Log Out</button>
+      <button class="agb" onclick="showPg('pg-portal');renderPortal()">View Portal</button>
+      <button class="agb" onclick="showPg('pg-login')">Log Out</button>
     </div>
   </div>
-  <div class="adnv">
-    <button class="tb on" onclick="aTab('rec',this)">Recordings</button>
-    <button class="tb" onclick="aTab('mat',this)">Materials</button>
-    <button class="tb" onclick="aTab('hw',this)">Homework</button>
-    <button class="tb" onclick="aTab('ann',this)">Announcements</button>
-    <button class="tb" onclick="aTab('stu',this)">Students</button>
-    <button class="tb" onclick="aTab('sub',this)">Submissions</button>
-    <button class="tb" onclick="aTab('set',this)">Settings</button>
+  <div class="adnav">
+    <a href="#ad-rec">Recordings</a>
+    <a href="#ad-mat">Materials</a>
+    <a href="#ad-hw">Homework</a>
+    <a href="#ad-ann">Announcements</a>
+    
+    <a href="#ad-sub">Submissions</a>
+    <a href="#ad-set">Settings</a>
   </div>
-  <div class="adco" id="adco"></div>
+  <div class="adco">
+
+    <!-- RECORDINGS -->
+    <div id="ad-rec" class="adsec">
+      <div class="attl">Session Recordings</div>
+      <div class="fc">
+        <div class="fct">Add New Recording</div>
+        <div class="f2">
+          <div class="fg"><label class="flb">Title</label><input class="fi2" id="vt" placeholder="e.g. Introduction to SAT Reading"></div>
+          <div class="fg"><label class="flb">Label</label><input class="fi2" id="vl" placeholder="e.g. Session 1"></div>
+        </div>
+        <div class="f2">
+          <div class="fg"><label class="flb">Date</label><input class="fi2" id="vd" placeholder="e.g. Apr 1, 2025"></div>
+          <div class="fg"><label class="flb">Duration</label><input class="fi2" id="vdu" placeholder="e.g. 55 min"></div>
+        </div>
+        <div class="f1">
+          <div class="fg"><label class="flb">Video URL (YouTube / Google Drive / Vimeo)</label><input class="fi2" id="vu" placeholder="Paste embed URL — leave empty to add later"></div>
+        </div>
+        <button class="sbtn" onclick="addRec()" style="margin-top:0.5rem">Add Recording (Locked by default)</button>
+      </div>
+      <div id="ad-rec-list"></div>
+    </div>
+
+    <!-- MATERIALS -->
+    <div id="ad-mat" class="adsec">
+      <div class="attl">Session Materials</div>
+      <div class="fc">
+        <div class="fct">Add New Material</div>
+        <div class="f2">
+          <div class="fg"><label class="flb">Name</label><input class="fi2" id="mn" placeholder="e.g. Session 1 Handout"></div>
+          <div class="fg"><label class="flb">Description</label><input class="fi2" id="md" placeholder="e.g. Overview of passage types"></div>
+        </div>
+        <div class="f2">
+          <div class="fg"><label class="flb">File Size (optional)</label><input class="fi2" id="msz" placeholder="e.g. 420 KB"></div>
+          <div class="fg"><label class="flb">Download URL</label><input class="fi2" id="mu" placeholder="Paste Google Drive link"></div>
+        </div>
+        <button class="sbtn" onclick="addMat()" style="margin-top:0.5rem">Add Material</button>
+      </div>
+      <div id="ad-mat-list"></div>
+    </div>
+
+    <!-- HOMEWORK -->
+    <div id="ad-hw" class="adsec">
+      <div class="attl">Homework</div>
+      <div class="fc">
+        <div class="fct">Create Homework Assignment</div>
+        <div class="f2">
+          <div class="fg"><label class="flb">Title</label><input class="fi2" id="ht" placeholder="e.g. Reading Practice"></div>
+          <div class="fg"><label class="flb">Due Date</label><input class="fi2" id="hd" placeholder="e.g. Apr 28, 2025"></div>
+        </div>
+        <div class="f1">
+          <div class="fg"><label class="flb">Instructions (optional)</label><input class="fi2" id="hi" placeholder="Any instructions for students"></div>
+        </div>
+        <div style="border-top:1px solid var(--bdr);padding-top:0.9rem;margin-top:0.5rem">
+          <div class="fct" style="margin-bottom:0.6rem">Questions</div>
+          <div id="qbuilder"></div>
+          <button onclick="addQ()" style="background:var(--pale);border:1px solid var(--bdr);color:var(--blue);font-size:0.78rem;font-weight:700;font-family:sans-serif;padding:7px 14px;border-radius:6px;margin-top:0.4rem">+ Add Question</button>
+        </div>
+        <button class="sbtn" onclick="addHW()" style="margin-top:0.9rem">Save Homework</button>
+      </div>
+      <div id="ad-hw-list"></div>
+    </div>
+
+    <!-- ANNOUNCEMENTS -->
+    <div id="ad-ann" class="adsec">
+      <div class="attl">Announcements</div>
+      <div class="fc">
+        <div class="fct">Post Announcement</div>
+        <div class="f1" style="margin-bottom:0.9rem">
+          <div class="fg"><label class="flb">Title</label><input class="fi2" id="at" placeholder="e.g. Next session rescheduled"></div>
+        </div>
+        <div class="f1">
+          <div class="fg"><label class="flb">Message</label><textarea class="fi2 fta" id="ab" placeholder="Write your message here..."></textarea></div>
+        </div>
+        <button class="sbtn" onclick="addAnn()" style="margin-top:0.7rem">Post Announcement</button>
+      </div>
+      <div id="ad-ann-list"></div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div id="ad-stu" class="adsec">
+      <div class="attl">Manage Students</div>
+      <div class="fc">
+        <div class="fct">Add New Student Account</div>
+        <div class="f2">
+          <div class="fg"><label class="flb">Full Name</label><input class="fi2" id="stn" placeholder="Student's full name"></div>
+          <div class="fg"><label class="flb">Password</label><input class="fi2" id="stp" placeholder="Set a password for this student"></div>
+        </div>
+        <button class="sbtn" onclick="addStu()" style="margin-top:0.5rem">Create Account</button>
+      </div>
+      <div id="ad-stu-list"></div>
+    </div>
+
+    <!-- SUBMISSIONS -->
+    <div id="ad-sub" class="adsec">
+      <div class="attl">Homework Submissions</div>
+      <div id="ad-sub-list"></div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="ad-set" class="adsec">
+      <div class="attl">Settings</div>
+      <div class="setc" style="margin-bottom:1.5rem">
+        <div class="sett">Student Class Password</div>
+        <p style="font-size:0.82rem;color:var(--muted);font-family:sans-serif;margin-bottom:1rem">All students use this password to log in. Share it with your students after they pay.</p>
+        <div style="background:var(--pale);border:1px solid var(--bdr);border-radius:8px;padding:1rem;margin-bottom:1rem;font-family:sans-serif">
+          Current password: <b id="show-cpw" style="color:var(--navy)">MasterSAT2025</b>
+        </div>
+        <div class="f2">
+          <div class="fg"><label class="flb">New Class Password</label><input class="fi2" type="text" id="ncpw" placeholder="e.g. Rasha2025"></div>
+        </div>
+        <button class="sbtn" onclick="chCPW()" style="margin-top:0.5rem">Update Class Password</button>
+      </div>
+      <div class="setc">
+        <div class="sett">Change Admin Password</div>
+        <div class="f2">
+          <div class="fg"><label class="flb">New Password</label><input class="fi2" type="password" id="np" placeholder="New password"></div>
+          <div class="fg"><label class="flb">Confirm</label><input class="fi2" type="password" id="cp" placeholder="Confirm password"></div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:0.5rem">
+          <button class="sbtn" onclick="chPW()">Update Password</button>
+          <span style="font-size:0.75rem;color:var(--red);margin-left:0.7rem" id="pwerr"></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <script>
-// ── DATA ──
-var K='msat_data', PK='msat_pass';
+var K='msat_d', PK='msat_pw';
 var D={recs:[],mats:[],hws:[],anns:[],stus:[],subs:[]};
 var ME=null, CQ=null, QA={}, QC=0;
 
 function getP(){return localStorage.getItem(PK)||'Lit@2025#Teach'}
 function save(){localStorage.setItem(K,JSON.stringify(D))}
 function load(){try{var x=JSON.parse(localStorage.getItem(K));if(x&&x.stus)D=x}catch(e){}}
-function id(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
-function v(i){var e=document.getElementById(i);return e?e.value.trim():''}
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
+function gv(i){var e=document.getElementById(i);return e?e.value.trim():''}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
-// ── NAVIGATION ──
-var ALL=['s-login','s-portal','s-quiz','s-alog','s-admin'];
-
-function go(sid){
-  ALL.forEach(function(s){
-    var el=document.getElementById(s);
-    el.style.display='none';
-  });
-  var t=document.getElementById(sid);
-  if(sid==='s-login'||sid==='s-alog'){
-    t.style.display='flex';
-  } else {
-    t.style.display='block';
-  }
+function showPg(id){
+  document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('show')});
+  document.getElementById(id).classList.add('show');
 }
 
-function openAdminLogin(){
+function openAdmin(){
   document.getElementById('aerr').textContent='';
   document.getElementById('apw').value='';
-  go('s-alog');
+  showPg('pg-alog');
 }
 
-// ── STUDENT AUTH ──
+// STUDENT LOGIN
+function getClassPW(){return localStorage.getItem('msat_cpw')||'MasterSAT2025'}
 function sLogin(){
   load();
-  var nm=document.getElementById('sname').value.trim();
-  var pw=document.getElementById('spw').value;
+  var nm=gv('sname'), pw=document.getElementById('spw').value;
   document.getElementById('serr').textContent='';
   if(!nm||!pw){document.getElementById('serr').textContent='Please enter your name and password.';return}
-  var f=null;
-  for(var i=0;i<D.stus.length;i++){
-    if(D.stus[i].name.toLowerCase()===nm.toLowerCase()&&D.stus[i].pw===pw&&D.stus[i].active!==false){f=D.stus[i];break}
-  }
-  if(!f){document.getElementById('serr').textContent='Incorrect name or password, or account is not active.';return}
-  ME={name:f.name,id:f.id};
-  document.getElementById('wname').textContent=f.name;
-  document.getElementById('qwname').textContent=f.name;
-  go('s-portal');
-  sTab('home',document.querySelector('.snav button'));
+  if(pw!==getClassPW()){document.getElementById('serr').textContent='Incorrect password. Please check with your teacher.';return}
+  ME={name:nm,id:nm.toLowerCase().replace(/\s+/g,'-')};
+  document.getElementById('wname').textContent=nm;
+  document.getElementById('qwname').textContent=nm;
+  showPg('pg-portal');
+  renderPortal();
 }
 function sLogout(){
   ME=null;
   document.getElementById('spw').value='';
   document.getElementById('sname').value='';
   document.getElementById('serr').textContent='';
-  go('s-login');
+  showPg('pg-login');
 }
 
-// ── STUDENT TABS ──
-function sTab(tab,btn){
-  document.querySelectorAll('.snav button').forEach(function(b){b.classList.remove('on')});
-  btn.classList.add('on');
-  renderS(tab);
-}
-
-function renderS(tab){
+function renderPortal(){
   if(!ME)return;
   var C=['#c2dfee','#d0e7f5','#daeef9','#c8e2f0','#b8d9ec'];
-  var h='';
-  if(tab==='home'){
-    var anns=D.anns.slice().reverse().slice(0,2);
-    var ah=anns.length?anns.map(function(a){return'<div class="ann"><div class="at">'+esc(a.title)+'</div><div class="ab">'+esc(a.body)+'</div><div class="ad">'+esc(a.date)+'</div></div>'}).join(''):'<div class="mt">No announcements yet.</div>';
-    h='<div class="ic"><div class="it"><div class="av">RA</div><div><div class="in">Ms. Rasha Ahmed</div><div class="ir">English Supervisor · SAT Instructor</div><div class="id">Masters Degree in Applied Linguistics and TESOL</div></div></div><hr class="idv"><div class="iq">"Welcome to Master SAT: English Section. My goal is to make every session clear, focused, and effective — equipping you with the strategies and confidence you need to excel in the SAT English section. I\'m glad you\'re here, and I look forward to guiding you every step of the way."</div><div class="stats"><div class="stat"><div class="si" style="background:#d0e8f7"><svg viewBox="0 0 24 24" fill="none" stroke="#1a56a0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div><div class="sn">14+</div><div class="sl">Years of teaching experience</div></div></div><div class="stat" style="background:var(--mint)"><div class="si" style="background:#b6e8d4"><svg viewBox="0 0 24 24" fill="none" stroke="#3aaa7a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div><div><div class="sn" style="color:#1a6b50">SAT</div><div class="sl">English Section specialist</div></div></div></div></div><div class="sr"><div class="sttl">Latest Announcements</div></div>'+ah;
-  }else if(tab==='rec'){
-    var rh=D.recs.length?D.recs.map(function(r,i){return r.unlocked?'<div class="vc open" onclick="openV('+i+')"><div class="vth" style="background:'+C[i%5]+'"><div class="vpw"><div class="vpb"></div></div><div class="vbg bu">AVAILABLE</div></div><div class="vbd"><div class="vlb">'+esc(r.lbl||'Session '+(i+1))+'</div><div class="vti">'+esc(r.title)+'</div><div class="vmt">'+esc(r.date||'')+(r.dur?' · '+esc(r.dur):'')+'</div></div></div>':'<div class="vc"><div class="vth" style="background:'+C[i%5]+'"><div class="vctr"><div style="font-size:20px">🔒</div><span style="font-size:0.6rem;color:var(--muted);letter-spacing:0.08em;font-family:sans-serif;font-weight:700;text-transform:uppercase">Not yet available</span></div><div class="vbg bl">LOCKED</div></div><div class="vbd"><div class="vlb">'+esc(r.lbl||'Session '+(i+1))+'</div><div class="vti">'+esc(r.title)+'</div><div class="vmt">Coming soon</div></div></div>'}).join(''):'<div class="mt">No recordings added yet.</div>';
-    h='<div class="sr"><div class="sttl">Session Recordings</div><span class="sct">'+D.recs.length+' session'+(D.recs.length!==1?'s':'')+' · locked until released</span></div><div class="vgrid">'+rh+'</div>';
-  }else if(tab==='mat'){
-    var mh=D.mats.length?D.mats.map(function(m){return'<div class="dr"><div class="di">PDF</div><div style="flex:1"><div class="dn">'+esc(m.name)+'</div><div class="ds">'+esc(m.desc||'')+(m.size?' · '+esc(m.size):'')+'</div></div>'+(m.url?'<button class="dbtn" onclick="window.open(\''+m.url+'\',\'_blank\')">Download</button>':'<button class="dbtn" disabled style="opacity:0.4">No link yet</button>')+'</div>'}).join(''):'<div class="mt">No materials yet.</div>';
-    h='<div class="sr"><div class="sttl">Session Materials</div><span class="sct">'+D.mats.length+' file'+(D.mats.length!==1?'s':'')+'</span></div><div class="dlist">'+mh+'</div>';
-  }else if(tab==='hw'){
-    var hwh=D.hws.length?D.hws.map(function(hw,i){var sub=null;for(var j=0;j<D.subs.length;j++){if(D.subs[j].sid===ME.id&&D.subs[j].hwid===hw.id){sub=D.subs[j];break}}var pct=sub?Math.round(sub.score*100/hw.qs.length):null;return'<div class="hwc"><div style="display:flex;align-items:center;gap:0.8rem"><div class="hwn">'+(i+1)+'</div><div><div class="hwt">'+esc(hw.title)+'</div><div class="hws">Due: '+esc(hw.due||'—')+' · '+hw.qs.length+' questions</div></div></div><div style="display:flex;align-items:center;gap:8px"><span class="mc">MULTIPLE CHOICE</span>'+(sub?'<span class="dt">✓ '+pct+'%</span><button class="rvbtn" onclick="openQ('+i+',true)">Review</button>':'<button class="stbtn" onclick="openQ('+i+',false)">Start</button>')+'</div></div>'}).join(''):'<div class="mt">No homework yet.</div>';
-    h='<div class="sr"><div class="sttl">Homework</div><span class="sct">'+D.hws.length+' assignment'+(D.hws.length!==1?'s':'')+'</span></div>'+hwh;
-  }else if(tab==='ann'){
-    var anns2=D.anns.slice().reverse();
-    h='<div class="sr"><div class="sttl">Announcements</div></div>'+(anns2.length?anns2.map(function(a){return'<div class="ann"><div class="at">'+esc(a.title)+'</div><div class="ab">'+esc(a.body)+'</div><div class="ad">'+esc(a.date)+'</div></div>'}).join(''):'<div class="mt">No announcements yet.</div>');
-  }
-  document.getElementById('smain').innerHTML=h;
+
+  // Announcements (home + full list)
+  var anns=D.anns.slice().reverse();
+  var ah=anns.length?anns.slice(0,2).map(function(a){return'<div class="ann"><div class="at">'+esc(a.title)+'</div><div class="ab">'+esc(a.body)+'</div><div class="ad">'+esc(a.date)+'</div></div>'}).join(''):'<div class="mt">No announcements yet.</div>';
+  document.getElementById('home-anns').innerHTML=ah;
+  var al=anns.length?anns.map(function(a){return'<div class="ann"><div class="at">'+esc(a.title)+'</div><div class="ab">'+esc(a.body)+'</div><div class="ad">'+esc(a.date)+'</div></div>'}).join(''):'<div class="mt">No announcements yet.</div>';
+  document.getElementById('ann-list').innerHTML=al;
+
+  // Recordings
+  document.getElementById('rec-ct').textContent=D.recs.length+' session'+(D.recs.length!==1?'s':'')+' · locked until released';
+  var rh=D.recs.length?D.recs.map(function(r,i){
+    return r.unlocked
+      ?'<div class="vc open" onclick="openV('+i+')"><div class="vth" style="background:'+C[i%5]+'"><div class="vpw"><div class="vpb"></div></div><div class="vbg bu">AVAILABLE</div></div><div class="vbd"><div class="vlb">'+esc(r.lbl||'Session '+(i+1))+'</div><div class="vti">'+esc(r.title)+'</div><div class="vmt">'+esc(r.date||'')+(r.dur?' · '+esc(r.dur):'')+'</div></div></div>'
+      :'<div class="vc"><div class="vth" style="background:'+C[i%5]+'"><div class="vctr"><div style="font-size:20px">🔒</div><span style="font-size:0.6rem;color:var(--muted);font-family:sans-serif;font-weight:700;text-transform:uppercase">Not yet available</span></div><div class="vbg bl">LOCKED</div></div><div class="vbd"><div class="vlb">'+esc(r.lbl||'Session '+(i+1))+'</div><div class="vti">'+esc(r.title)+'</div><div class="vmt">Coming soon</div></div></div>';
+  }).join(''):'<div class="mt">No recordings added yet.</div>';
+  document.getElementById('rec-list').innerHTML=rh;
+
+  // Materials
+  document.getElementById('mat-ct').textContent=D.mats.length+' file'+(D.mats.length!==1?'s':'');
+  var mh=D.mats.length?D.mats.map(function(m){
+    return'<div class="dr"><div class="di">PDF</div><div style="flex:1"><div class="dn">'+esc(m.name)+'</div><div class="ds">'+esc(m.desc||'')+(m.size?' · '+esc(m.size):'')+'</div></div>'
+    +(m.url?'<button class="dbtn" onclick="window.open(\''+m.url+'\',\'_blank\')">Download</button>':'<button class="dbtn" disabled style="opacity:0.4">No link yet</button>')+'</div>';
+  }).join(''):'<div class="mt">No materials yet.</div>';
+  document.getElementById('mat-list').innerHTML=mh;
+
+  // Homework
+  document.getElementById('hw-ct').textContent=D.hws.length+' assignment'+(D.hws.length!==1?'s':'');
+  var hwh=D.hws.length?D.hws.map(function(hw,i){
+    var sub=null;
+    for(var j=0;j<D.subs.length;j++){if(D.subs[j].sid===ME.id&&D.subs[j].hwid===hw.id){sub=D.subs[j];break}}
+    var pct=sub?Math.round(sub.score*100/hw.qs.length):null;
+    return'<div class="hwc"><div style="display:flex;align-items:center;gap:0.8rem"><div class="hwn">'+(i+1)+'</div><div><div class="hwt">'+esc(hw.title)+'</div><div class="hws">Due: '+esc(hw.due||'—')+' · '+hw.qs.length+' questions</div></div></div>'
+    +'<div style="display:flex;align-items:center;gap:8px"><span class="mc">MULTIPLE CHOICE</span>'
+    +(sub?'<span class="donet">✓ '+pct+'%</span><button class="rvbtn" onclick="openQ('+i+',true)">Review</button>':'<button class="stbtn" onclick="openQ('+i+',false)">Start</button>')
+    +'</div></div>';
+  }).join(''):'<div class="mt">No homework yet.</div>';
+  document.getElementById('hw-list').innerHTML=hwh;
 }
 
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-
-// ── VIDEO ──
+// VIDEO
 function openV(i){
   var r=D.recs[i];
   document.getElementById('vti').textContent=r.title;
   document.getElementById('vme').textContent=[r.lbl,r.date,r.dur].filter(Boolean).join(' · ');
   var isE=r.url&&(r.url.indexOf('youtube')>-1||r.url.indexOf('youtu.be')>-1||r.url.indexOf('vimeo')>-1||r.url.indexOf('drive.google')>-1);
-  document.getElementById('mvid').innerHTML=r.url?(isE?'<iframe src="'+r.url+'" allowfullscreen allow="autoplay"></iframe>':'<video controls controlslist="nodownload" disablePictureInPicture oncontextmenu="return false"><source src="'+r.url+'"></video>'):'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-style:italic">No video link yet.</div>';
+  document.getElementById('mvid').innerHTML=r.url
+    ?(isE?'<iframe src="'+r.url+'" allowfullscreen allow="autoplay"></iframe>':'<video controls controlslist="nodownload" disablePictureInPicture oncontextmenu="return false"><source src="'+r.url+'"></video>')
+    :'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--muted);font-style:italic">No video link yet.</div>';
   document.getElementById('vmod').classList.add('open');
 }
 function closeV(e){if(!e||e.target===document.getElementById('vmod')){document.getElementById('vmod').classList.remove('open');document.getElementById('mvid').innerHTML=''}}
 
-// ── QUIZ ──
+// QUIZ
 function openQ(i,rev){
   if(!ME)return;
   CQ={hw:D.hws[i],rev:rev};QA={};
@@ -441,24 +593,20 @@ function openQ(i,rev){
   document.getElementById('qmet').textContent='Due: '+(CQ.hw.due||'—')+' · '+CQ.hw.qs.length+' questions';
   var sub=null;
   if(rev){for(var j=0;j<D.subs.length;j++){if(D.subs[j].sid===ME.id&&D.subs[j].hwid===CQ.hw.id){sub=D.subs[j];break}}}
-  rQs(CQ.hw,sub,rev);
-  document.getElementById('qres').innerHTML='';
-  document.getElementById('qsr').style.display=rev?'none':'flex';
-  go('s-quiz');
-}
-function rQs(hw,sub,rev){
   var L=['A','B','C','D'],h='';
-  hw.qs.forEach(function(q,qi){
+  CQ.hw.qs.forEach(function(q,qi){
     var sa=sub?sub.ans[qi]:null;
-    h+='<div class="qcard"><div class="qn">Question '+(qi+1)+' of '+hw.qs.length+'</div><div class="qt">'+esc(q.text)+'</div><div class="qopts">';
+    h+='<div class="qcard"><div class="qnum">Question '+(qi+1)+' of '+CQ.hw.qs.length+'</div><div class="qtxt">'+esc(q.text)+'</div><div class="qopts">';
     q.opts.forEach(function(o,oi){
-      var c='qo';
-      if(rev){if(oi===q.cor)c+=' cor';else if(oi===sa&&oi!==q.cor)c+=' wrn'}
+      var c='qo';if(rev){if(oi===q.cor)c+=' cor';else if(oi===sa&&oi!==q.cor)c+=' wrn'}
       h+='<div class="'+c+'" data-qi="'+qi+'" data-oi="'+oi+'" '+(rev?'':'onclick="pickO(this)"')+'><div class="ql">'+L[oi]+'</div><div class="qot">'+esc(o)+'</div></div>';
     });
     h+='</div></div>';
   });
   document.getElementById('qqs').innerHTML=h;
+  document.getElementById('qres').innerHTML='';
+  document.getElementById('qsr').style.display=rev?'none':'flex';
+  showPg('pg-quiz');
 }
 function pickO(el){
   var qi=el.getAttribute('data-qi');
@@ -469,8 +617,7 @@ function pickO(el){
 function submitQ(){
   var hw=CQ.hw;
   if(Object.keys(QA).length<hw.qs.length){alert('Please answer all questions.');return}
-  var sc=0;
-  hw.qs.forEach(function(q,i){if(QA[i]===q.cor)sc++});
+  var sc=0;hw.qs.forEach(function(q,i){if(QA[i]===q.cor)sc++});
   D.subs=D.subs.filter(function(s){return!(s.sid===ME.id&&s.hwid===hw.id)});
   D.subs.push({sid:ME.id,sname:ME.name,hwid:hw.id,hwtitle:hw.title,ans:JSON.parse(JSON.stringify(QA)),score:sc,total:hw.qs.length,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),ts:Date.now()});
   save();
@@ -479,131 +626,96 @@ function submitQ(){
   var tc=pct>=80?'#1a6b50':pct>=60?'#7a5010':'#b02020';
   document.getElementById('qres').innerHTML='<div style="background:'+col+';border:1px solid '+tc+'33;border-radius:12px;padding:1.4rem;text-align:center;margin-bottom:1rem"><div style="font-size:2.4rem;font-weight:700;color:'+tc+'">'+sc+'/'+hw.qs.length+'</div><div style="font-size:0.88rem;font-family:sans-serif;font-weight:700;color:'+tc+'">'+pct+'% — '+(pct>=80?'Excellent work!':pct>=60?'Good effort!':'Keep practising!')+'</div></div>';
   document.getElementById('qsr').style.display='none';
-  rQs(hw,{ans:JSON.parse(JSON.stringify(QA))},true);
+  // re-render with correct answers
+  var L=['A','B','C','D'],h='';
+  hw.qs.forEach(function(q,qi){
+    var sa=QA[qi];
+    h+='<div class="qcard"><div class="qnum">Question '+(qi+1)+' of '+hw.qs.length+'</div><div class="qtxt">'+esc(q.text)+'</div><div class="qopts">';
+    q.opts.forEach(function(o,oi){
+      var c='qo';if(oi===q.cor)c+=' cor';else if(oi===sa&&oi!==q.cor)c+=' wrn';
+      h+='<div class="'+c+'"><div class="ql">'+L[oi]+'</div><div class="qot">'+esc(o)+'</div></div>';
+    });
+    h+='</div></div>';
+  });
+  document.getElementById('qqs').innerHTML=h;
 }
-function backHW(){go('s-portal');renderS('hw');document.querySelectorAll('.snav button').forEach(function(b,i){b.classList.toggle('on',i===3)})}
+function backHW(){showPg('pg-portal');renderPortal()}
 
-// ── ADMIN AUTH ──
+// ADMIN LOGIN
 function aLogin(){
   var pw=document.getElementById('apw').value;
   if(pw===getP()){
     load();
-    go('s-admin');
-    aTab('rec',document.querySelector('.tb'));
+    showPg('pg-admin');
+    renderAdmin();
   }else{
     document.getElementById('aerr').textContent='Incorrect password.';
   }
 }
 
-// ── ADMIN TABS ──
-function aTab(tab,btn){
-  document.querySelectorAll('.tb').forEach(function(b){b.classList.remove('on')});
-  btn.classList.add('on');
-  document.getElementById('adco').innerHTML=buildTab(tab);
+// ADMIN RENDER - renders into static HTML divs that are ALWAYS in the page
+function renderAdmin(){
+  var cpw=localStorage.getItem('msat_cpw')||'MasterSAT2025';
+  var el=document.getElementById('show-cpw');
+  if(el) el.textContent=cpw;
+  renderRecs();renderMats();renderHWs();renderAnns();renderStus();renderSubs();
+}
 }
 
-function buildTab(tab){
-  var h='';
-  if(tab==='rec'){
-    var list=D.recs.length?D.recs.map(function(r,i){
-      return'<div class="ai"><span class="abg bv">VIDEO</span><div class="ainf"><div class="ain">'+esc(r.title)+'</div><div class="ais">'+esc(r.lbl||'')+' · '+esc(r.date||'No date')+'</div></div>'
-      +'<div class="tw"><span class="tl">'+(r.unlocked?'Unlocked':'Locked')+'</span><label class="tg"><input type="checkbox" '+(r.unlocked?'checked':'')+' onchange="tR('+i+',this.checked)"><span class="ts"></span></label></div>'
-      +'<button class="db" onclick="dR('+i+')">Remove</button></div>';
-    }).join(''):'<div class="ni">No recordings yet.</div>';
-    h='<div class="attl">Session Recordings</div>'
-     +'<div class="fc"><div class="fct">Add New Recording</div>'
-     +'<div class="f2"><div class="fg"><label class="flb">Title</label><input class="fi2" id="vt" placeholder="e.g. Introduction to SAT Reading"></div>'
-     +'<div class="fg"><label class="flb">Label</label><input class="fi2" id="vl" placeholder="e.g. Session 1"></div></div>'
-     +'<div class="f2"><div class="fg"><label class="flb">Date</label><input class="fi2" id="vd" placeholder="e.g. Apr 1, 2025"></div>'
-     +'<div class="fg"><label class="flb">Duration</label><input class="fi2" id="vdu" placeholder="e.g. 55 min"></div></div>'
-     +'<div class="f1"><div class="fg"><label class="flb">Video URL (YouTube / Google Drive / Vimeo)</label><input class="fi2" id="vu" placeholder="Paste embed URL — leave empty to add later"></div></div>'
-     +'<div style="margin-top:0.5rem"><button class="sbtn" onclick="addR()">Add Recording (Locked by default)</button></div></div>'
-     +list;
-  }else if(tab==='mat'){
-    var list=D.mats.length?D.mats.map(function(m,i){
-      return'<div class="ai"><span class="abg bm">PDF</span><div class="ainf"><div class="ain">'+esc(m.name)+'</div><div class="ais">'+esc(m.desc||'')+'</div></div>'
-      +'<button class="db" onclick="dM('+i+')">Remove</button></div>';
-    }).join(''):'<div class="ni">No materials yet.</div>';
-    h='<div class="attl">Session Materials</div>'
-     +'<div class="fc"><div class="fct">Add New Material</div>'
-     +'<div class="f2"><div class="fg"><label class="flb">Name</label><input class="fi2" id="mn" placeholder="e.g. Session 1 Handout"></div>'
-     +'<div class="fg"><label class="flb">Description</label><input class="fi2" id="md" placeholder="e.g. Overview of passage types"></div></div>'
-     +'<div class="f2"><div class="fg"><label class="flb">File Size (optional)</label><input class="fi2" id="ms" placeholder="e.g. 420 KB"></div>'
-     +'<div class="fg"><label class="flb">Download URL</label><input class="fi2" id="mu" placeholder="Paste Google Drive link"></div></div>'
-     +'<div style="margin-top:0.5rem"><button class="sbtn" onclick="addM()">Add Material</button></div></div>'
-     +list;
-  }else if(tab==='hw'){
-    var list=D.hws.length?D.hws.map(function(hw,i){
-      return'<div class="ai"><span class="abg bh">HW</span><div class="ainf"><div class="ain">'+esc(hw.title)+'</div><div class="ais">Due: '+esc(hw.due||'—')+' · '+hw.qs.length+' questions</div></div>'
-      +'<button class="db" onclick="dH('+i+')">Remove</button></div>';
-    }).join(''):'<div class="ni">No homework yet.</div>';
-    h='<div class="attl">Homework</div>'
-     +'<div class="fc"><div class="fct">Create Homework Assignment</div>'
-     +'<div class="f2"><div class="fg"><label class="flb">Title</label><input class="fi2" id="ht" placeholder="e.g. Reading Practice — Passages 1–3"></div>'
-     +'<div class="fg"><label class="flb">Due Date</label><input class="fi2" id="hd" placeholder="e.g. Apr 28, 2025"></div></div>'
-     +'<div class="f1"><div class="fg"><label class="flb">Instructions (optional)</label><input class="fi2" id="hi" placeholder="Any instructions for students"></div></div>'
-     +'<div style="border-top:1px solid var(--bdr);padding-top:0.9rem;margin-top:0.5rem">'
-     +'<div class="fct" style="margin-bottom:0.6rem">Questions</div>'
-     +'<div id="qb"></div>'
-     +'<button onclick="addQ2()" style="background:var(--pale);border:1px solid var(--bdr);color:var(--blue);font-size:0.78rem;font-weight:700;font-family:sans-serif;padding:7px 14px;border-radius:6px;margin-top:0.4rem">+ Add Question</button></div>'
-     +'<div style="margin-top:0.9rem"><button class="sbtn" onclick="addH()">Save Homework</button></div></div>'
-     +list;
-  }else if(tab==='ann'){
-    var list=D.anns.length?D.anns.slice().reverse().map(function(a,i){
-      return'<div class="ai"><span class="abg ba">ANN</span><div class="ainf"><div class="ain">'+esc(a.title)+'</div><div class="ais">'+esc(a.date)+'</div></div>'
-      +'<button class="db" onclick="dA('+(D.anns.length-1-i)+')">Remove</button></div>';
-    }).join(''):'<div class="ni">No announcements yet.</div>';
-    h='<div class="attl">Announcements</div>'
-     +'<div class="fc"><div class="fct">Post Announcement</div>'
-     +'<div class="f1" style="margin-bottom:0.9rem"><div class="fg"><label class="flb">Title</label><input class="fi2" id="at" placeholder="e.g. Next session rescheduled"></div></div>'
-     +'<div class="f1"><div class="fg"><label class="flb">Message</label><textarea class="fi2 fta" id="ab" placeholder="Write your message here..."></textarea></div></div>'
-     +'<div style="margin-top:0.7rem"><button class="sbtn" onclick="addA()">Post Announcement</button></div></div>'
-     +list;
-  }else if(tab==='stu'){
-    var list=D.stus.length?D.stus.map(function(s,i){
-      var ini=s.name.split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase();
-      return'<div class="sti"><div class="stav">'+ini+'</div><div class="stif"><div class="stnm">'+esc(s.name)+'</div><div class="stst '+(s.active===false?'sti2':'sta')+'">'+(s.active===false?'Inactive':'Active')+'</div></div>'
-      +'<button class="rb" onclick="rPW('+i+')">Reset PW</button>'
-      +(s.active===false?'<button class="ab2" onclick="tS('+i+',true)">Activate</button>':'<button class="dab" onclick="tS('+i+',false)">Deactivate</button>')
-      +'<button class="db" onclick="dS('+i+')">Remove</button></div>';
-    }).join(''):'<div class="ni">No students yet.</div>';
-    h='<div class="attl">Manage Students</div>'
-     +'<div class="fc"><div class="fct">Add New Student Account</div>'
-     +'<div class="f2"><div class="fg"><label class="flb">Full Name</label><input class="fi2" id="sn" placeholder="Student\'s full name"></div>'
-     +'<div class="fg"><label class="flb">Password</label><input class="fi2" id="sp" placeholder="Set a password for this student"></div></div>'
-     +'<div style="margin-top:0.5rem"><button class="sbtn" onclick="addS()">Create Account</button></div></div>'
-     +list;
-  }else if(tab==='sub'){
-    var list=D.subs.length?D.subs.slice().sort(function(a,b){return(b.ts||0)-(a.ts||0)}).map(function(s){
-      var pct=Math.round(s.score*100/s.total),cl=pct>=80?'sg':pct>=60?'sm':'sr2';
-      return'<div class="sub"><div class="sbh"><div><div class="sbs">'+esc(s.sname)+'</div><div class="sbw">'+esc(s.hwtitle)+' · '+esc(s.date)+'</div></div><div class="sbc '+cl+'">'+s.score+'/'+s.total+' — '+pct+'%</div></div></div>';
-    }).join(''):'<div class="ni">No submissions yet.</div>';
-    h='<div class="attl">Homework Submissions</div>'+list;
-  }else if(tab==='set'){
-    h='<div class="attl">Settings</div>'
-     +'<div class="setc"><div class="sett">Change Admin Password</div>'
-     +'<div class="f2"><div class="fg"><label class="flb">New Password</label><input class="fi2" type="password" id="np" placeholder="New password"></div>'
-     +'<div class="fg"><label class="flb">Confirm</label><input class="fi2" type="password" id="cp" placeholder="Confirm password"></div></div>'
-     +'<div style="display:flex;align-items:center;margin-top:0.5rem"><button class="sbtn" onclick="chPW()">Update Password</button>'
-     +'<span style="font-size:0.75rem;color:var(--red);margin-left:0.7rem" id="pwerr"></span></div></div>';
-  }
-  return h;
+function renderRecs(){
+  document.getElementById('ad-rec-list').innerHTML=D.recs.length?D.recs.map(function(r,i){
+    return'<div class="ai"><span class="abg bv">VIDEO</span><div class="ainf"><div class="ain">'+esc(r.title)+'</div><div class="ais">'+esc(r.lbl||'')+' · '+esc(r.date||'No date')+'</div></div>'
+    +'<div class="tw"><span class="tl">'+(r.unlocked?'Unlocked':'Locked')+'</span><label class="tg"><input type="checkbox" '+(r.unlocked?'checked':'')+' onchange="tR('+i+',this.checked)"><span class="ts"></span></label></div>'
+    +'<button class="db" onclick="dR('+i+')">Remove</button></div>';
+  }).join(''):'<div class="ni">No recordings yet.</div>';
+}
+function renderMats(){
+  document.getElementById('ad-mat-list').innerHTML=D.mats.length?D.mats.map(function(m,i){
+    return'<div class="ai"><span class="abg bm">PDF</span><div class="ainf"><div class="ain">'+esc(m.name)+'</div><div class="ais">'+esc(m.desc||'')+'</div></div><button class="db" onclick="dM('+i+')">Remove</button></div>';
+  }).join(''):'<div class="ni">No materials yet.</div>';
+}
+function renderHWs(){
+  document.getElementById('ad-hw-list').innerHTML=D.hws.length?D.hws.map(function(hw,i){
+    return'<div class="ai"><span class="abg bh">HW</span><div class="ainf"><div class="ain">'+esc(hw.title)+'</div><div class="ais">Due: '+esc(hw.due||'—')+' · '+hw.qs.length+' questions</div></div><button class="db" onclick="dH('+i+')">Remove</button></div>';
+  }).join(''):'<div class="ni">No homework yet.</div>';
+}
+function renderAnns(){
+  document.getElementById('ad-ann-list').innerHTML=D.anns.length?D.anns.slice().reverse().map(function(a,i){
+    return'<div class="ai"><span class="abg ba">ANN</span><div class="ainf"><div class="ain">'+esc(a.title)+'</div><div class="ais">'+esc(a.date)+'</div></div><button class="db" onclick="dA('+(D.anns.length-1-i)+')">Remove</button></div>';
+  }).join(''):'<div class="ni">No announcements yet.</div>';
+}
+function renderStus(){
+  document.getElementById('ad-stu-list').innerHTML=D.stus.length?D.stus.map(function(s,i){
+    var ini=s.name.split(' ').map(function(w){return w[0]}).join('').slice(0,2).toUpperCase();
+    return'<div class="sti"><div class="stav">'+ini+'</div><div class="stif"><div class="stnm">'+esc(s.name)+'</div><div class="stst '+(s.active===false?'sti2':'sta')+'">'+(s.active===false?'Inactive':'Active')+'</div></div>'
+    +'<button class="rb" onclick="rPW('+i+')">Reset PW</button>'
+    +(s.active===false?'<button class="ab2" onclick="tS('+i+',true)">Activate</button>':'<button class="dab" onclick="tS('+i+',false)">Deactivate</button>')
+    +'<button class="db" onclick="dS('+i+')">Remove</button></div>';
+  }).join(''):'<div class="ni">No students yet.</div>';
+}
+function renderSubs(){
+  document.getElementById('ad-sub-list').innerHTML=D.subs.length?D.subs.slice().sort(function(a,b){return(b.ts||0)-(a.ts||0)}).map(function(s){
+    var pct=Math.round(s.score*100/s.total),cl=pct>=80?'sg':pct>=60?'sm':'sr2';
+    return'<div class="subc"><div class="sbh"><div><div class="sbs">'+esc(s.sname)+'</div><div class="sbw">'+esc(s.hwtitle)+' · '+esc(s.date)+'</div></div><div class="sbc '+cl+'">'+s.score+'/'+s.total+' — '+pct+'%</div></div></div>';
+  }).join(''):'<div class="ni">No submissions yet.</div>';
 }
 
-// ── ADMIN ACTIONS ──
-function addR(){
-  var t=v('vt');if(!t){alert('Enter a title.');return}
-  D.recs.push({id:id(),title:t,lbl:v('vl'),date:v('vd'),dur:v('vdu'),url:v('vu'),unlocked:false});
-  save();aTab('rec',document.querySelector('.tb.on'));
+// ADMIN ACTIONS
+function addRec(){
+  var t=gv('vt');if(!t){alert('Enter a title.');return}
+  D.recs.push({id:uid(),title:t,lbl:gv('vl'),date:gv('vd'),dur:gv('vdu'),url:gv('vu'),unlocked:false});
+  save();['vt','vl','vd','vdu','vu'].forEach(function(id){document.getElementById(id).value=''});
+  renderRecs();alert('Recording added!');
 }
-function addM(){
-  var n=v('mn');if(!n){alert('Enter a name.');return}
-  D.mats.push({id:id(),name:n,desc:v('md'),size:v('ms'),url:v('mu')});
-  save();aTab('mat',document.querySelectorAll('.tb')[1]);
+function addMat(){
+  var n=gv('mn');if(!n){alert('Enter a name.');return}
+  D.mats.push({id:uid(),name:n,desc:gv('md'),size:gv('msz'),url:gv('mu')});
+  save();['mn','md','msz','mu'].forEach(function(id){document.getElementById(id).value=''});
+  renderMats();alert('Material added!');
 }
-function addQ2(){
+function addQ(){
   QC++;
-  var qb=document.getElementById('qb');
+  var qb=document.getElementById('qbuilder');
   var d=document.createElement('div');
   var n=QC;
   d.id='qb'+n;
@@ -613,15 +725,14 @@ function addQ2(){
     +'<button onclick="document.getElementById(\'qb'+n+'\').remove()" style="background:none;border:none;color:var(--muted);font-size:0.78rem;cursor:pointer;font-family:sans-serif">Remove</button></div>'
     +'<input class="fi2" id="qt'+n+'" placeholder="Question text" style="margin-bottom:0.45rem">'
     +['A','B','C','D'].map(function(l,i){return'<div style="display:flex;align-items:center;gap:0.45rem;margin-bottom:0.35rem"><span style="width:20px;height:20px;border-radius:50%;background:var(--bdr);display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;font-family:sans-serif;flex-shrink:0">'+l+'</span><input class="fi2" id="qo'+n+'_'+i+'" placeholder="Option '+l+'" style="flex:1"></div>'}).join('')
-    +'<div style="display:flex;align-items:center;gap:0.45rem;margin-top:0.4rem"><span style="font-size:0.67rem;font-weight:700;color:var(--muted);font-family:sans-serif">Correct answer:</span>'
-    +'<select class="fi2" id="qc'+n+'" style="width:auto"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select></div>';
+    +'<div style="display:flex;align-items:center;gap:0.45rem;margin-top:0.4rem"><span style="font-size:0.67rem;font-weight:700;color:var(--muted);font-family:sans-serif">Correct:</span><select class="fi2" id="qc'+n+'" style="width:auto"><option value="0">A</option><option value="1">B</option><option value="2">C</option><option value="3">D</option></select></div>';
   qb.appendChild(d);
 }
-function addH(){
-  var t=v('ht');if(!t){alert('Enter a title.');return}
-  var blocks=document.querySelectorAll('[id^="qb"]:not([id="qb"])');
+function addHW(){
+  var t=gv('ht');if(!t){alert('Enter a title.');return}
+  var blocks=document.querySelectorAll('[id^="qb"]:not(#qbuilder)');
   if(!blocks.length){alert('Add at least one question.');return}
-  var qs=[];var ok=true;
+  var qs=[],ok=true;
   blocks.forEach(function(b){
     var n=b.id.replace('qb','');
     var text=document.getElementById('qt'+n).value.trim();
@@ -631,28 +742,41 @@ function addH(){
     qs.push({text:text,opts:opts,cor:cor});
   });
   if(!ok){alert('Fill in all questions and options.');return}
-  D.hws.push({id:id(),title:t,due:v('hd'),inst:v('hi'),qs:qs});
-  save();QC=0;aTab('hw',document.querySelectorAll('.tb')[2]);
+  D.hws.push({id:uid(),title:t,due:gv('hd'),inst:gv('hi'),qs:qs});
+  save();
+  document.getElementById('ht').value='';document.getElementById('hd').value='';document.getElementById('hi').value='';
+  document.getElementById('qbuilder').innerHTML='';QC=0;
+  renderHWs();alert('Homework saved!');
 }
-function addA(){
-  var t=v('at'),b=v('ab');if(!t||!b){alert('Enter title and message.');return}
-  D.anns.push({id:id(),title:t,body:b,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})});
-  save();aTab('ann',document.querySelectorAll('.tb')[3]);
+function addAnn(){
+  var t=gv('at'),b=gv('ab');if(!t||!b){alert('Enter title and message.');return}
+  D.anns.push({id:uid(),title:t,body:b,date:new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})});
+  save();document.getElementById('at').value='';document.getElementById('ab').value='';
+  renderAnns();alert('Announcement posted!');
 }
-function addS(){
-  var n=v('sn'),p=v('sp');if(!n||!p){alert('Enter name and password.');return}
+function addStu(){
+  var n=gv('stn'),p=gv('stp');if(!n||!p){alert('Enter name and password.');return}
   if(D.stus.find(function(s){return s.name.toLowerCase()===n.toLowerCase()})){alert('Student already exists.');return}
-  D.stus.push({id:id(),name:n,pw:p,active:true});
-  save();aTab('stu',document.querySelectorAll('.tb')[4]);
+  D.stus.push({id:uid(),name:n,pw:p,active:true});
+  save();document.getElementById('stn').value='';document.getElementById('stp').value='';
+  renderStus();alert('Student account created!');
 }
-function tR(i,val){D.recs[i].unlocked=val;save();aTab('rec',document.querySelector('.tb.on'))}
-function tS(i,val){D.stus[i].active=val;save();aTab('stu',document.querySelectorAll('.tb')[4])}
+function tR(i,v){D.recs[i].unlocked=v;save();renderRecs()}
+function tS(i,v){D.stus[i].active=v;save();renderStus()}
 function rPW(i){var p=prompt('New password for '+D.stus[i].name+':');if(!p)return;D.stus[i].pw=p;save();alert('Password updated!')}
-function dR(i){if(!confirm('Remove this recording?'))return;D.recs.splice(i,1);save();aTab('rec',document.querySelector('.tb.on'))}
-function dM(i){if(!confirm('Remove?'))return;D.mats.splice(i,1);save();aTab('mat',document.querySelectorAll('.tb')[1])}
-function dH(i){if(!confirm('Remove?'))return;D.hws.splice(i,1);save();aTab('hw',document.querySelectorAll('.tb')[2])}
-function dA(i){if(!confirm('Remove?'))return;D.anns.splice(i,1);save();aTab('ann',document.querySelectorAll('.tb')[3])}
-function dS(i){if(!confirm('Remove this student?'))return;D.stus.splice(i,1);save();aTab('stu',document.querySelectorAll('.tb')[4])}
+function dR(i){if(!confirm('Remove?'))return;D.recs.splice(i,1);save();renderRecs()}
+function dM(i){if(!confirm('Remove?'))return;D.mats.splice(i,1);save();renderMats()}
+function dH(i){if(!confirm('Remove?'))return;D.hws.splice(i,1);save();renderHWs()}
+function dA(i){if(!confirm('Remove?'))return;D.anns.splice(i,1);save();renderAnns()}
+function dS(i){if(!confirm('Remove?'))return;D.stus.splice(i,1);save();renderStus()}
+function chCPW(){
+  var p=gv('ncpw');
+  if(!p){alert('Enter a new class password.');return}
+  localStorage.setItem('msat_cpw',p);
+  document.getElementById('ncpw').value='';
+  document.getElementById('show-cpw').textContent=p;
+  alert('Class password updated! New password: '+p);
+}
 function chPW(){
   var n=document.getElementById('np').value,c=document.getElementById('cp').value,e=document.getElementById('pwerr');
   e.textContent='';
@@ -663,10 +787,10 @@ function chPW(){
   alert('Password updated successfully!');
 }
 
-// ── START ──
+// START
 load();
-if(window.location.hash==='#admin'){openAdminLogin()}
-else{go('s-login')}
+if(window.location.hash==='#admin'){openAdmin()}
+else{showPg('pg-login')}
 </script>
 </body>
 </html>
